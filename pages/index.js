@@ -1,115 +1,82 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
+// ✅ IMPORTS (These bring in the tools and components we need)
+import Link from "next/link";            // For navigating between pages
+import Head from "next/head";            // For setting title/metadata in the <head>
+import { useState } from "react";        // For controlling the dropdown menu
+import ArticleCard from "../components/ArticleCard"; // Reusable card component for lesson previews
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
+// ✅ MAIN FUNCTION – This is your homepage component
 export default function Home() {
+  // 🔁 Dropdown menu toggle (open/close)
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  // ✅ RENDERED UI
   return (
-    <div
-      className={`${geistSans.className} ${geistMono.className} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              pages/index.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+    <>
+      {/* 🌐 HTML <head> section */}
+      <Head>
+        <title>Deutsch Lernreise</title>
+        <meta name="description" content="Ein wachsendes Lernjournal mit KI-Unterstützung" />
+      </Head>
+
+      {/* 🧱 MAIN CONTENT SECTION */}
+      <main className="min-h-screen bg-amber-50 text-gray-800 p-6">
+        
+        {/* 🔝 NAVIGATION BAR */}
+        <nav className="mb-10 flex flex-wrap items-center justify-between">
+          {/* 🏠 Site Title */}
+          <div className="text-2xl font-semibold text-teal-700">
+            🌍 Deutsch Lernreise
+          </div>
+
+          {/* 📂 DROPDOWN MENU */}
+          <div className="relative">
+            <button
+              onClick={() => setDropdownOpen(!dropdownOpen)}
+              className="bg-teal-600 text-white px-4 py-2 rounded-md shadow hover:bg-teal-700"
+            >
+              📂 Inhalte
+            </button>
+
+            {/* 🧾 Dropdown links appear when dropdownOpen is true */}
+            {dropdownOpen && (
+              <div className="absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-lg z-10">
+                <ul className="divide-y divide-gray-200">
+                  <li><Link href="/lesson-1" className="block px-4 py-2 hover:bg-gray-100">📖 Lektion 1</Link></li>
+                  <li><Link href="/lesson-2" className="block px-4 py-2 hover:bg-gray-100">📖 Lektion 2</Link></li>
+                  <li><Link href="/flashcards" className="block px-4 py-2 hover:bg-gray-100">🧠 Flashcards</Link></li>
+                  <li><Link href="/verbs" className="block px-4 py-2 hover:bg-gray-100">🚀 Verb Crashkurs</Link></li>
+                  <li><Link href="/grammar" className="block px-4 py-2 hover:bg-gray-100">📘 Grammatik-Tipps</Link></li>
+                  <li><Link href="/chatbot" className="block px-4 py-2 hover:bg-gray-100">🤖 KI-Chatbot</Link></li>
+                </ul>
+              </div>
+            )}
+          </div>
+        </nav>
+
+        {/* 👋 WELCOME SECTION */}
+        <section className="mb-12">
+          <h1 className="text-3xl font-bold text-teal-700 mb-2">
+            Willkommen bei Deutsch Lernreise!
+          </h1>
+          <p className="text-md text-gray-600 max-w-xl">
+            Tauche ein in kurze Geschichten, praktische Vokabeln, Grammatik-Tipps und KI-unterstütztes Lernen. 🌱
+          </p>
+        </section>
+
+        {/* 📚 LESSON PREVIEW CARDS (Uses the ArticleCard component) */}
+        <section className="grid gap-6 md:grid-cols-2">
+          <ArticleCard
+            title="Lektion 1: Der verlorene Schlüssel"
+            description="Eine Kurzgeschichte mit Vokabelliste, Beispielen und Grammatiknoten."
+            href="/lesson-1"
+          />
+          <ArticleCard
+            title="Lektion 2: Der geheimnisvolle Apfel"
+            description="Eine kurze Geschichte mit nützlichen Redewendungen und Alltagsvokabular."
+            href="/lesson-2"
+          />
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    </>
   );
 }
