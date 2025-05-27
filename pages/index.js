@@ -1,69 +1,66 @@
-// ✅ IMPORTS (These bring in the tools and components we need)
-import Link from "next/link";            // For navigating between pages
-import Head from "next/head";            // For setting title/metadata in the <head>
-import { useState } from "react";        // For controlling the dropdown menu
-import ArticleCard from "../components/ArticleCard"; // Reusable card component for lesson previews
+import ArticleCard from '../components/ArticleCard';
+import Link from 'next/link';
+import Head from 'next/head';
+import { useState } from 'react'; // for dropdown toggle
 
-// ✅ MAIN FUNCTION – This is your homepage component
 export default function Home() {
-  // 🔁 Dropdown menu toggle (open/close)
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  // ✅ RENDERED UI
   return (
     <>
-      {/* 🌐 HTML <head> section */}
       <Head>
         <title>Deutsch Lernreise</title>
         <meta name="description" content="Ein wachsendes Lernjournal mit KI-Unterstützung" />
       </Head>
 
-      {/* 🧱 MAIN CONTENT SECTION */}
-      <main className="min-h-screen bg-amber-50 text-gray-800 p-6">
-        
-        {/* 🔝 NAVIGATION BAR */}
+      <main className="min-h-screen bg-amber-50 text-gray-800 p-8">
+        {/* Navigation Bar */}
         <nav className="mb-10 flex flex-wrap items-center justify-between">
-          {/* 🏠 Site Title */}
-          <div className="text-2xl font-semibold text-teal-700">
-            🌍 Deutsch Lernreise
-          </div>
+          <div className="text-2xl font-semibold text-teal-700">🌍 Deutsch Lernreise</div>
 
-          {/* 📂 DROPDOWN MENU */}
+          {/* Dropdown Menu */}
           <div className="relative">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="bg-teal-600 text-white px-4 py-2 rounded-md shadow hover:bg-teal-700"
+              className="px-4 py-2 bg-teal-100 hover:bg-teal-200 rounded-lg text-teal-800 font-medium transition"
             >
-              📂 Inhalte
+              Bereiche ▼
             </button>
-
-            {/* 🧾 Dropdown links appear when dropdownOpen is true */}
             {dropdownOpen && (
-              <div className="absolute left-0 mt-2 w-56 bg-white shadow-lg rounded-lg z-10">
-                <ul className="divide-y divide-gray-200">
-                  <li><Link href="/lesson-1" className="block px-4 py-2 hover:bg-gray-100">📖 Lektion 1</Link></li>
-                  <li><Link href="/lesson-2" className="block px-4 py-2 hover:bg-gray-100">📖 Lektion 2</Link></li>
-                  <li><Link href="/flashcards" className="block px-4 py-2 hover:bg-gray-100">🧠 Flashcards</Link></li>
-                  <li><Link href="/verbs" className="block px-4 py-2 hover:bg-gray-100">🚀 Verb Crashkurs</Link></li>
-                  <li><Link href="/grammar" className="block px-4 py-2 hover:bg-gray-100">📘 Grammatik-Tipps</Link></li>
-                  <li><Link href="/chatbot" className="block px-4 py-2 hover:bg-gray-100">🤖 KI-Chatbot</Link></li>
-                </ul>
+              <div className="absolute right-0 mt-2 w-56 rounded-lg bg-white shadow-lg border border-gray-200 z-50">
+                <Link href="/lesson-1" passHref legacyBehavior>
+                  <a className="block px-4 py-2 hover:bg-gray-100">📖 Lektionen</a>
+                </Link>
+                <Link href="/flashcards" passHref legacyBehavior>
+                  <a className="block px-4 py-2 hover:bg-gray-100">🃏 Flashcards</a>
+                </Link>
+                <Link href="/verb-crash-course" passHref legacyBehavior>
+                  <a className="block px-4 py-2 hover:bg-gray-100">⚡ Verb Crashkurs</a>
+                </Link>
+                <Link href="/chatbot" passHref legacyBehavior>
+                  <a className="block px-4 py-2 hover:bg-gray-100">🤖 Chatbot</a>
+                </Link>
               </div>
             )}
           </div>
         </nav>
 
-        {/* 👋 WELCOME SECTION */}
-        <section className="mb-12">
-          <h1 className="text-3xl font-bold text-teal-700 mb-2">
-            Willkommen bei Deutsch Lernreise!
+        {/* Welcome Section */}
+        <section className="bg-white rounded-2xl shadow-md p-8 mb-12 text-center">
+          <h1 className="text-3xl font-bold text-teal-800 mb-2">
+            Willkommen auf deiner Deutschreise 🇩🇪
           </h1>
-          <p className="text-md text-gray-600 max-w-xl">
-            Tauche ein in kurze Geschichten, praktische Vokabeln, Grammatik-Tipps und KI-unterstütztes Lernen. 🌱
+          <p className="text-gray-600 mb-4">
+            Hier findest du Geschichten, Grammatik, Vokabeln und KI-Hilfen, um dein Deutsch zu
+            verbessern – egal, ob Anfänger oder Fortgeschritten.
           </p>
+          <div className="bg-amber-100 text-amber-800 px-4 py-3 rounded-lg text-sm inline-block">
+            💡 Fun Fact des Tages: Das längste deutsche Wort im Duden ist
+            "Aufmerksamkeitsdefizit-Hyperaktivitätsstörung".
+          </div>
         </section>
 
-        {/* 📚 LESSON PREVIEW CARDS (Uses the ArticleCard component) */}
+        {/* Article Grid Section (reuse existing cards) */}
         <section className="grid gap-6 md:grid-cols-2">
           <ArticleCard
             title="Lektion 1: Der verlorene Schlüssel"
@@ -71,11 +68,20 @@ export default function Home() {
             href="/lesson-1"
           />
           <ArticleCard
-            title="Lektion 2: Der geheimnisvolle Apfel"
-            description="Eine kurze Geschichte mit nützlichen Redewendungen und Alltagsvokabular."
-            href="/lesson-2"
+            title="📊 Visuelle Hilfen"
+            description="Diagramme, Tabellen und Merksätze für Kasus, Verben und mehr."
+            href="/visuals"
+          />
+          <ArticleCard
+            title="🧠 KI-Werkzeuge"
+            description="Chat mit GPT, Vokabelhilfe, Grammatikprüfung (coming soon)"
+            href="/ai-tools"
           />
         </section>
+
+        <footer className="mt-16 text-center text-sm text-gray-500">
+          © 2025 Kieran Reilly – Deutsch Lernen mit ❤️
+        </footer>
       </main>
     </>
   );

@@ -1,6 +1,6 @@
 // ✅ IMPORTS
-import Head from "next/head";
-import Link from "next/link";
+import Head from 'next/head';
+import Link from 'next/link';
 
 // ✅ PAGE COMPONENT
 export default function FlashcardsPage() {
