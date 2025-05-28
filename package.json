@@ -6,12 +6,17 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint . --fix",
+    "format": "prettier --write .",
+    "vercel-check": "npm run format && npm run lint && npm run build"
   },
   "dependencies": {
+    "gray-matter": "^4.0.3",
     "next": "15.3.2",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "remark": "^15.0.1",
+    "remark-html": "^16.0.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
@@ -22,13 +27,5 @@
     "eslint-plugin-prettier": "^5.4.0",
     "prettier": "^3.5.3",
     "tailwindcss": "^4"
-  },
-  "scripts": {
-  "dev": "next dev",
-  "build": "next build",
-  "start": "next start",
-  "lint": "eslint . --fix",
-  "format": "prettier --write .",
-  "vercel-check": "npm run format && npm run lint && npm run build"
-}
+  }
 }

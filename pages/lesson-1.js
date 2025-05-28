@@ -53,8 +53,8 @@ export default function Lesson1() {
           <section>
             <h2 className="text-xl font-semibold mt-8 mb-2">📚 Grammatik-Tipp</h2>
             <p>
-              Beachte die trennbaren Verben wie <strong>durchsuchen</strong> – im Perfekt: "Sie hat
-              ihre Tasche <i>durchsucht</i>".
+              Beachte die trennbaren Verben wie <strong>durchsuchen</strong> – im Perfekt: &quot;Sie hat
+              ihre Tasche <i>durchsucht</i>&quot;.
             </p>
           </section>
         </div>
