@@ -17,7 +17,10 @@ export default function LessonPage({ source, frontMatter }) {
 }
 
 export async function getStaticPaths() {
-  const filenames = fs.readdirSync(lessonsDirectory);
+  const filenames = fs. 
+    readdirSync(lessonsDirectory)
+    .filter((file) => file.endsWith('.mdx') && !file.startsWith('.')); //  
+  
   const paths = filenames.map((name) => ({
     params: { slug: name.replace(/\.mdx?$/, '') },
   }));
