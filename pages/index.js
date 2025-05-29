@@ -31,7 +31,7 @@ export default function Home() {
                 <Link href="/lesson-1" passHref legacyBehavior>
                   <a className="block px-4 py-2 hover:bg-gray-100">📖 Lektionen</a>
                 </Link>
-                <Link href="/lessons/lesson-2" passHref legacyBehavior> 
+                <Link href="/../content/lessons/lesson-2.mdx" passHref legacyBehavior> 
                   <a className="block px-4 py-2 hover:bg-gray-100">🧾 Lektion 2 (Markdown)</a> 
                 </Link>
                 <Link href="/flashcards" passHref legacyBehavior>
