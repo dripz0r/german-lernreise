@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { useState } from 'react'; // for dropdown toggle
 
-export default function Home() {
+export default function Home({ lessons }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   return (
@@ -28,12 +28,11 @@ export default function Home() {
             </button>
             {dropdownOpen && (
               <div className="absolute right-0 mt-2 w-56 rounded-lg bg-white shadow-lg border border-gray-200 z-50">
-                <Link href="/lesson-1" passHref legacyBehavior>
-                  <a className="block px-4 py-2 hover:bg-gray-100">📖 Lektionen</a>
-                </Link>
-                <Link href="/lessons/lesson-2" passHref legacyBehavior>
-                  <a className="block px-4 py-2 hover:bg-gray-100">🧾 Lektion 2 (Markdown)</a>
-                </Link>
+                {lessons.map(({slug, title}) => (
+                  <Link key={slug} href={`/lessons/${slug}`} passHref legacyBehavior> 
+                    <a className="block px-4 py-2 hover:bg-gray-100">📘 {title}</a>
+                  </Link> 
+                ))}
                 <Link href="/flashcards" passHref legacyBehavior>
                   <a className="block px-4 py-2 hover:bg-gray-100">🃏 Flashcards</a>
                 </Link>
@@ -91,4 +90,15 @@ export default function Home() {
       </main>
     </>
   );
+}
+
+export async function getStaticProps() {
+  const { getLessonsList } = await import('../lib/getLessonsList'); 
+  const lessons = getLessonsList(); 
+  
+  return { 
+    props: { 
+      lessons,
+    },
+  };
 }
