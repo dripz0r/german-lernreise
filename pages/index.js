@@ -31,7 +31,7 @@ export default function Home() {
                 <Link href="/lesson-1" passHref legacyBehavior>
                   <a className="block px-4 py-2 hover:bg-gray-100">📖 Lektionen</a>
                 </Link>
-                <Link href="/lesson/lesson-2" passHref legacyBehavior> 
+                <Link href="/lessons/lesson-2" passHref legacyBehavior> 
                   <a className="block px-4 py-2 hover:bg-gray-100">🧾 Lektion 2 (Markdown)</a> 
                 </Link>
                 <Link href="/flashcards" passHref legacyBehavior>
@@ -42,6 +42,9 @@ export default function Home() {
                 </Link>
                 <Link href="/chatbot" passHref legacyBehavior>
                   <a className="block px-4 py-2 hover:bg-gray-100">🤖 Chatbot</a>
+                </Link>
+                <Link href="/vocab-cloud" className="text-sm hover:underline text-teal-600">
+                  🌩 View Vocab Cloud
                 </Link>
               </div>
             )}

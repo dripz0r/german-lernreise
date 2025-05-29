@@ -11,6 +11,9 @@
     "vercel-check": "npm run format && npm run lint && npm run build"
   },
   "dependencies": {
+    "@mdx-js/loader": "^3.1.0",
+    "@mdx-js/react": "^3.1.0",
+    "@next/mdx": "^15.3.2",
     "gray-matter": "^4.0.3",
     "next": "15.3.2",
     "react": "^19.0.0",

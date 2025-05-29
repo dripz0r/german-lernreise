@@ -1,0 +1,20 @@
+{
+  "verstehen": {
+    "translation": "to understand",
+    "type": "verb",
+    "level": "A1",
+    "tags": ["verb", "beginner", "core"],
+    "example_de": "Ich verstehe dich.",
+    "example_en": "I understand you."
+  },
+  "Buch": {
+    "translation": "book",
+    "type": "noun",
+    "gender": "das",
+    "plural": "Bücher",
+    "level": "A1",
+    "tags": ["noun", "beginner", "object"],
+    "example_de": "Ich lese ein Buch.",
+    "example_en": "I’m reading a book."
+  }
+}
